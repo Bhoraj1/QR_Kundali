@@ -1,0 +1,9 @@
+.nav-link {
+  font-weight: "bold";
+  color: "black";
+}
+
+.nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+}
