@@ -10,7 +10,7 @@ import path from "path";
 dotenv.config();
 
 const app = express();
-app.use(morgan("dev"))
+app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json()); // Middleware to parse JSON bodies
 
@@ -22,7 +22,7 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://qr-kundali-z0e3.onrender.com",
     credentials: true,
   })
 );
@@ -34,14 +34,13 @@ app.use("/api/v1", router);
 app.use("/api/v1", router2);
 
 //for deployment in render
-app.use(express.static(path.join(__dirname, '/frontend/dist')))
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend','dist', 'index.html'))
-})
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
   // promptUser();
 });
-
