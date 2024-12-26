@@ -6,6 +6,7 @@ import router from "./router/loginSignupRouter.js";
 import router2 from "./router/generator-route.js";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -15,6 +16,9 @@ app.use(express.json()); // Middleware to parse JSON bodies
 
 //MongoDB connection
 connectDb();
+
+//Dynamic folder for deployment in render
+const __dirname = path.resolve();
 
 app.use(
   cors({
@@ -29,19 +33,15 @@ const PORT = process.env.PORT || 8080;
 app.use("/api/v1", router);
 app.use("/api/v1", router2);
 
+//for deployment in render
+app.use(express.static(path.join(__dirname, '/frontend/dist')))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend','dist', 'index.html'))
+})
+
 app.listen(PORT, () => {
   console.log(`server is listening on port ${PORT}`);
   // promptUser();
 });
-{
-  /*import LoginModel from "./models/loginSchema.js";
-app.get("/watch", async (req, res) => {
-  try {
-    const users = await LoginModel.find(); // Using async/await
-    res.send(users);
-  } catch (err) {
-    console.error("Error fetching users:", err);
-    res.status(500).send("Server Error");
-  }
-}); */
-}
+
