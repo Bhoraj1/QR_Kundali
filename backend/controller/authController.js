@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import SignUpModel from "../models/signupSchema.js";
 import { SendVerificationCode } from "./OTPController.js";
-import { sendResetPasswordEmail } from "./EmailService.js";
+import { sendResetPasswordEmail } from "./emailService.js";
 
 // Generate JWT token
 const signToken = (id) => {
