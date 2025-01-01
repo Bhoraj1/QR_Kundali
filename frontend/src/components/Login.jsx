@@ -15,6 +15,9 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const token = Cookies.get("token");
+  console.log("Token from cookie:", token);
+
   const handleInput = async (e) => {
     e.preventDefault();
     const emailValue = emailElement.current.value;
@@ -32,7 +35,7 @@ export default function Login() {
 
     try {
       // Make the API call to save data to MongoDB
-      const response = await axios.post("http://localhost:8080/api/v1/login", {
+      const response = await axios.post("/api/v1/login", {
         email: emailValue,
         password: passwordValue,
         withCredentials: true, // This allows cookies to be sent/received
@@ -85,7 +88,7 @@ export default function Login() {
             <label
               htmlFor="exampleInputEmail1"
               className="form-label
-          "
+            "
             >
               Enter your Email
             </label>

@@ -7,14 +7,11 @@ export default function ForgotPassword() {
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/forgot-password",
-        {
-          email,
-        }
-      );
+      const response = await axios.post("/api/v1/forgot-password", {
+        email,
+      });
       setIsForget(false);
-    localStorage.removeItem("isForget");
+      localStorage.removeItem("isForget");
 
       toast.success(response?.data?.message || "See your link");
     } catch (error) {

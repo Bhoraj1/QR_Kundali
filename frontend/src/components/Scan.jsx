@@ -14,7 +14,7 @@ export default function Scan() {
       setLoading(true);
       // Send POST request to backend API
       const response = await axios.post(
-        "http://localhost:8080/api/v1/save-scan",
+        "/api/v1/save-scan",
         {
           qrCodeText,
           email,

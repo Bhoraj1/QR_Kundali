@@ -100,7 +100,7 @@ export default function Generate() {
     try {
       setLoading(true); // Start loader
       const response = await axios.post(
-        "http://localhost:8080/api/v1/generate-qr",
+        "/api/v1/generate-qr",
         {
           qrCodeText: requestData,
           email,

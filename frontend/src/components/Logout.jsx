@@ -9,7 +9,7 @@ export default function Logout() {
   const handleLogout = async () => {
     try {
       // Call the logout API
-      const response = await axios.get("http://localhost:8080/api/v1/logout", {
+      const response = await axios.get("/api/v1/logout", {
         withCredentials: true, // This allows cookies to be sent/received
       });
 
@@ -18,7 +18,7 @@ export default function Logout() {
         Cookies.remove("jwt");
         Cookies.remove("token");
         localStorage.removeItem("email");
-        localStorage.removeItem("user")
+        localStorage.removeItem("user");
         navigate("/login"); // Redirect to login page
         toast.success("Logout successfully!");
       }

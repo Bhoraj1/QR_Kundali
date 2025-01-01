@@ -5,12 +5,9 @@ export default function Google({ informParent }) {
     const token = credentialResponse.credential; // Extracting the token
     // console.log(credentialResponse); // Logging for debugging
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/googleLogin",
-        {
-          idToken: token, // Sending the token to backend
-        }
-      ); // API endpoint
+      const response = await axios.post("/api/v1/googleLogin", {
+        idToken: token, // Sending the token to backend
+      }); // API endpoint
 
       // Passing the backend response to informParent
       informParent(response);

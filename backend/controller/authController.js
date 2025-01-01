@@ -56,7 +56,7 @@ export const Signup = async (req, res) => {
 
     const token = signToken(newUser._id);
     res.cookie("token", token, {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
@@ -94,7 +94,7 @@ export const Login = async (req, res) => {
 
     const token = signToken(user._id);
     res.cookie("token", token, {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 

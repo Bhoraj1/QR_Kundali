@@ -17,7 +17,7 @@ export default function Signup() {
 
   // Check if the user is already logged in on component mount
   useEffect(() => {
-    dispatch(checkAuthentication()); 
+    dispatch(checkAuthentication());
     if (isAuthenticated) {
       navigate("/generate");
     }
@@ -41,8 +41,8 @@ export default function Signup() {
       return; // Block form submission
     }
 
-    
-    {/*
+    {
+      /*
      // Dispatch input data to Redux for further processing
        dispatch(
       SignupInputs({
@@ -51,9 +51,10 @@ export default function Signup() {
         password: PasswordValue,
       })
     );
-    */}
+    */
+    }
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/signup", {
+      const response = await axios.post(`/api/v1/signup`, {
         username: UserNameValue,
         email: EmailValue,
         password: PasswordValue,

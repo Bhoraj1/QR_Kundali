@@ -14,15 +14,12 @@ export default function ResetPassword() {
   const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/reset-password",
-        {
-          token,
-          password,
-          confirmPassword,
-        }
-      );
-    
+      const response = await axios.post("/api/v1/reset-password", {
+        token,
+        password,
+        confirmPassword,
+      });
+
       if (response) {
         toast.success(
           response?.data?.user?.message || "Password reset successfully "
@@ -30,7 +27,7 @@ export default function ResetPassword() {
       }
       navigate("/login");
     } catch (error) {
-      if(error.response && error.response.status== 400){
+      if (error.response && error.response.status == 400) {
         toast.error(error.response.data.message);
       }
       console.error(error);

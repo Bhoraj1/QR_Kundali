@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import connectDb from "./config/connectDB.js";
 import router from "./router/loginSignupRouter.js";
@@ -20,12 +19,6 @@ connectDb();
 //Dynamic folder for deployment in render
 const __dirname = path.resolve();
 
-app.use(
-  cors({
-    origin: "https://qr-kundali-z0e3.onrender.com",
-    credentials: true,
-  })
-);
 
 const PORT = process.env.PORT || 8080;
 // app.use(express.static("public"));

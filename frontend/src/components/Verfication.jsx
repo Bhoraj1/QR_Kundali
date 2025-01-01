@@ -20,13 +20,10 @@ export default function Verification() {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/v1/verify-email",
-        {
-          email: userEmail, // Use the email extracted from location state
-          otp: verificationCode, // Use the entered verification code
-        }
-      );
+      const response = await axios.post("/api/v1/verify-email", {
+        email: userEmail, // Use the email extracted from location state
+        otp: verificationCode, // Use the entered verification code
+      });
 
       if (response.status === 200) {
         toast.success("Email verified successfully!");

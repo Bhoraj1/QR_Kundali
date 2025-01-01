@@ -1,24 +1,14 @@
 import { Navigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
-
-// Helper function to get a cookie by name
-const getCookie = (name) => {
-  const cookieArr = document.cookie.split("; ");
-  for (let cookie of cookieArr) {
-    const cookiePair = cookie.split("=");
-    if (name === cookiePair[0]) {
-      return cookiePair[1]; // Return the value of the cookie
-    }
-  }
-  return null; // Return null if not found
-};
+import Cookies from "js-cookie";
 
 const PrivateRoute = ({ element }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Start as null to indicate checking
 
   useEffect(() => {
-    const token = getCookie("token"); // Get token from cookies
+    const token = Cookies.get("token"); // Get token directly using js-cookie
+    console.log("Token from cookie:", token);
     if (token) {
       setIsAuthenticated(true); // Set true if token is present
     } else {
@@ -35,6 +25,5 @@ const PrivateRoute = ({ element }) => {
   // Render the element if authenticated, otherwise redirect
   return isAuthenticated ? element : <Navigate to="/login" />;
 };
-
 
 export default PrivateRoute;
