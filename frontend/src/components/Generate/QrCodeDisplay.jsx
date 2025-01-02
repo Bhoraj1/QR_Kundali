@@ -3,9 +3,9 @@ import React from "react";
 export default function QrCodeDisplay({ qrCodeImage, handleDownload }) {
   return (
     <>
-      <div className="sm:mt-[-145px] ">
+      <div className="sm:mt-[-145px]">
         {qrCodeImage && (
-          <div className="flex flex-col w-[200px] justify-center items-center ml-28  sm:mt-20 sm:mr-36">
+          <div className="flex flex-col w-[200px] justify-center items-center ml-20 mb-4  sm:mt-20 sm:mr-52">
             <span className="">Your QR code</span>
             <img src={qrCodeImage} alt="Generated QR Code" />
             <button
