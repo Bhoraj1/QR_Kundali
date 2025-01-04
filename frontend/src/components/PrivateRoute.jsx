@@ -8,7 +8,7 @@ const PrivateRoute = ({ element }) => {
 
   useEffect(() => {
     const token = Cookies.get("token"); // Get token directly using js-cookie
-    console.log("Token from cookie:", token);
+    console.log("Token from cookie private:", token);
     if (token) {
       setIsAuthenticated(true); // Set true if token is present
     } else {

@@ -19,7 +19,7 @@ export default function Logout() {
         Cookies.remove("token");
         localStorage.removeItem("email");
         localStorage.removeItem("user");
-        navigate("/login"); // Redirect to login page
+        navigate("/login");
         toast.success("Logout successfully!");
       }
     } catch (error) {

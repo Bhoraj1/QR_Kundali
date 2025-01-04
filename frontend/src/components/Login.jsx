@@ -16,7 +16,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const token = Cookies.get("token");
-  console.log("Token from cookie:", token);
+  console.log("Token from cookie login:", token);
 
   const handleInput = async (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function Login() {
         withCredentials: true, // This allows cookies to be sent/received
       });
       const token = response.data.token;
-      const cookieExpires = 86400;
+      const cookieExpires = 7 * 24 * 60 * 60;
       document.cookie = `token=${token}; path=/; max-age=${cookieExpires}`;
 
       if (response.status === 200) {
@@ -62,7 +62,7 @@ export default function Login() {
 
   function informParent(response) {
     Cookies.set("token", response.data.token, {
-      expires: 1,
+      expires: 7,
     });
     setlocalStorage("user", response.data.user);
     toast.success(`Welcome ${response.data.user.username}`);

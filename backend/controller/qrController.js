@@ -59,11 +59,6 @@ export const GenerateQr = async (req, res) => {
   try {
     // Generate QR code as base64 data
     const qrCodeDataURL = await QRCode.toDataURL(filteredData, { width: 250 });
-    // Check if the user exists
-    const user = await SignUpModel.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
     let generate = await Generate.findOne({ email });
     if (generate) {
       // Add new QR code to the existing array
@@ -97,10 +92,6 @@ export const ScanQr = async (req, res) => {
   try {
     const { qrCodeText, email } = req.body;
 
-    const user = await SignUpModel.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
     // Save activity in the Scan model
     let scan = await Scan.findOne({ email });
     if (scan) {

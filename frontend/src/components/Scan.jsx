@@ -57,11 +57,11 @@ export default function Scan() {
 
   return (
     <>
-      <div className="flex flex-col sm:justify-center sm:items-center ml-10">
+      <div className="flex flex-col sm:justify-center sm:items-center ml-7">
         <h1 className="text-4xl font-bold font-serif sm:m-2 m-3">
           QR Code Scanner (Upload Image)
         </h1>
-        <div className="ml-7">
+        <div className="ml-5">
           <input
             type="file"
             accept="image/*"
@@ -71,14 +71,14 @@ export default function Scan() {
         </div>
 
         {qrCodeText && (
-          <div className="sm:mr-14 text-xl flex flex-col ml-7">
+          <div className="sm:mr-14 text-xl flex flex-col">
             <h2 className="mt-2 sm:flex sm:justify-center sm:items-center text-stone-700 font-bold text-2xl ">
               KUNDALI Results is:
             </h2>
             <div className="sm:w-[600px] relative">
               <textarea
                 ref={textRef}
-                className="sm:w-full w-[300px] h-40 p-2 border-2 border-gray-500 rounded-md "
+                className="sm:w-full w-[300px] h-40 p-2 border-2 border-gray-500 rounded-md  "
                 value={loading ? "" : qrCodeText}
                 onChange={(e) => setQrCodeText(e.target.value)} // Update qrCodeText when changed
               />
@@ -91,7 +91,7 @@ export default function Scan() {
           </div>
         )}
         {qrCodeText && (
-          <div className="flex justify-center items-center mt-3 mr-9">
+          <div className="flex justify-center items-center mt-3 mr-12">
             <button
               className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 hover:border-2 border-blue-700 "
               onClick={handleCopyAndHighlight}
