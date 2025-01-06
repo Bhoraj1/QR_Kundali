@@ -1,6 +1,6 @@
 import express from "express";
 
-import { forgotPassword, Login, logout, resetPassword, Signup, VerifyOPT } from "../controller/authController.js";
+import { forgotPassword, Login, logout, resetPassword, Signup, validateToken, VerifyOPT } from "../controller/authController.js";
 import { GoogleAuth } from "../controller/OTPController.js";
 
 
@@ -12,5 +12,6 @@ router.post('/verify-email', VerifyOPT);
 router.post('/googleLogin', GoogleAuth);
 router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
+router.post('/valid-token', validateToken);
 
 export default router;

@@ -76,9 +76,7 @@ export default function FieldsForm({
                 value={inputData.prefix}
                 onChange={(e) => handleFieldChange("prefix", e.target.value)}
               />
-              <p className="opacity-50 text-sm ">
-                For example: Mr, Miss, Mrs, Dr, etc
-              </p>
+              <p className="opacity-50 text-sm "></p>
               <input
                 className=" flex p-1 border-b border-gray-900 focus:outline-none w-[300px] sm:w-[600px] mt-1"
                 type="text"

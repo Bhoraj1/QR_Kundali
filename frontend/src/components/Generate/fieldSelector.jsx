@@ -1,5 +1,5 @@
 import React from "react";
-export default function FieldSelector({fields, handleclick, selectedField}) {
+export default function FieldSelector({ fields, handleclick, selectedField }) {
   return (
     <>
       <div className="flex flex-col sm:ml-14 mt-6 cursor-pointer">
@@ -9,12 +9,12 @@ export default function FieldSelector({fields, handleclick, selectedField}) {
             <div
               key={key}
               onClick={() => handleclick(key)}
-              className={`flex flex-col items-center nav-link w-[30%] m-auto ${
+              className={`flex flex-col items-center nav-link w-[30%] mx-auto ${
                 selectedField == key ? "active" : ""
               }`}
             >
               {icon}
-              <span className="text-xs">{label}</span>
+              <span className="text-xs ml-1">{label}</span>
             </div>
           ))}
         </div>

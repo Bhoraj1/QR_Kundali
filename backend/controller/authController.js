@@ -241,3 +241,32 @@ export const resetPassword = async (req, res) => {
     res.status(400).json({ message: "Invalid token or token expired" });
   }
 };
+
+// validate-token
+export const validateToken = async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(400).json({ message: "Token is required" });
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify token
+    const user = await SignUpModel.findById(decoded.id); // Fetch user from database
+
+    if (user && user.isVerified) {
+      // Check if user exists and email is verified
+      return res.status(200).json({ valid: true });
+    } else {
+      return res
+        .status(401)
+        .json({
+          valid: false,
+          message:
+            "Email not verified please verify your emai and login to access this page",
+        });
+    }
+  } catch (error) {
+    return res
+      .status(401)
+      .json({ valid: false, message: "Invalid or expired token" });
+  }
+};

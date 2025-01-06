@@ -167,7 +167,7 @@ export default function Generate() {
           <button
             onClick={handleSubmit}
             type="submit"
-            className=" p-2 px-4 items-center my-2 mx-14 bg-blue-500 rounded text-white"
+            className="  p-2 px-4 mb-5  mx-7 items-center  bg-blue-500 rounded text-white"
           >
             {loading ? "Generating..." : "Generate"}
           </button>

@@ -4,12 +4,12 @@ import connectDb from "./config/connectDB.js";
 import router from "./router/loginSignupRouter.js";
 import router2 from "./router/generator-route.js";
 import cookieParser from "cookie-parser";
-import morgan from "morgan";
+// import morgan from "morgan";
 import path from "path";
 dotenv.config();
 
 const app = express();
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json()); // Middleware to parse JSON bodies
 

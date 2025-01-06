@@ -15,16 +15,10 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const token = Cookies.get("token");
-  console.log("Token from cookie login:", token);
-
   const handleInput = async (e) => {
     e.preventDefault();
     const emailValue = emailElement.current.value;
     const passwordValue = passwordElement.current.value;
-
-    // console.log("Email:", emailValue);
-    // console.log("Password:", passwordValue);
 
     dispatch(
       LoginActions.inputs({
