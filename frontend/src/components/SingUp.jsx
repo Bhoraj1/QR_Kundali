@@ -58,7 +58,6 @@ export default function Signup() {
         username: UserNameValue,
         email: EmailValue,
         password: PasswordValue,
-        withCredentials: true,
       });
       if (response.status === 200) {
         // Save user details in localStorage
@@ -66,16 +65,14 @@ export default function Signup() {
           username: UserNameValue,
           email: EmailValue,
         };
-        localStorage.setItem("user", JSON.stringify(userDetails)); // Save user data in localStorage
+        localStorage.setItem("user", JSON.stringify(userDetails));
         toast.success(
           "Account Created Successfully! Please verify your email."
         );
-        navigate("/verify-email", { state: { email: EmailValue } }); // Redirect to verification page
+        navigate("/verify-email", { state: { email: EmailValue } });
       }
     } catch (error) {
-      if (error.response.status === 401) {
-        toast.error(error.response.data.message);
-      } else if (error.response.status === 409) {
+      if (error.response.status === 409) {
         toast.error(error.response.data.message);
         navigate("/verify-email", { state: { email: EmailValue } });
       } else if (error.response && error.response.status === 400) {

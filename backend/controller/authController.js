@@ -11,18 +11,8 @@ export const Signup = async (req, res) => {
 
     const existingUser = await SignUpModel.findOne({ email });
     if (existingUser) {
-      const isPasswordCorrect = await bcrypt.compare(
-        password,
-        existingUser.password
-      );
-      if (!isPasswordCorrect) {
-        return res
-          .status(401)
-          .json({ status: "Fail", message: "Incorrect password" });
-      }
       return res.status(409).json({
-        status: "Fail",
-        message: "Email already exists. Please verify with OTP.",
+        message: "user already exists. Please verify with OTP.",
       });
     }
 
@@ -50,7 +40,6 @@ export const Signup = async (req, res) => {
 
     res.status(200).json({
       status: "Success",
-      token,
       data: { newUser },
       message: "User created successfully",
     });
@@ -77,7 +66,6 @@ export const Login = async (req, res) => {
         .status(401)
         .json({ status: "Fail", message: "Incorrect email or password" });
     }
-
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "90d",
     });

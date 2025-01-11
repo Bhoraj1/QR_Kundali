@@ -6,7 +6,6 @@ import Generate from "../models/generateModel.js";
 // Controller for Generate QR code
 export const GenerateQr = async (req, res) => {
   const { qrCodeText, email } = req.body;
-  // Destructure nested values from qrCodeText
   const {
     text,
     url,
@@ -62,6 +61,7 @@ export const GenerateQr = async (req, res) => {
       width: 250,
       pixelRatio: 7,
     });
+
     let generate = await Generate.findOne({ email });
     if (generate) {
       // Add new QR code to the existing array
@@ -94,7 +94,6 @@ export const GenerateQr = async (req, res) => {
 export const ScanQr = async (req, res) => {
   try {
     const { qrCodeText, email } = req.body;
-
     // Save activity in the Scan model
     let scan = await Scan.findOne({ email });
     if (scan) {
