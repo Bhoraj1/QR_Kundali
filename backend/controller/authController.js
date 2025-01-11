@@ -4,13 +4,6 @@ import SignUpModel from "../models/signupSchema.js";
 import { SendVerificationCode } from "./OTPController.js";
 import { sendResetPasswordEmail } from "./emailService.js";
 
-// Generate JWT token
-const signToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
-};
-
 // Signup controller
 export const Signup = async (req, res) => {
   try {
@@ -45,19 +38,12 @@ export const Signup = async (req, res) => {
       100000 + Math.random() * 900000
     ).toString();
     const expireTime = Date.now() + 3 * 60 * 1000;
-
     const newUser = await SignUpModel.create({
       username,
       email,
       password: hashedPassword,
       verificationCode,
       expireTime,
-    });
-
-    const token = signToken(newUser._id);
-    res.cookie("token", token, {
-      httpOnly: false,
-      maxAge: 30 * 24 * 60 * 60 * 1000,
     });
 
     SendVerificationCode(newUser.email, verificationCode);
@@ -92,12 +78,9 @@ export const Login = async (req, res) => {
         .json({ status: "Fail", message: "Incorrect email or password" });
     }
 
-    const token = signToken(user._id);
-    res.cookie("token", token, {
-      httpOnly: false,
-      maxAge: 30 * 24 * 60 * 60 * 1000,
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "90d",
     });
-
     res.status(200).json({
       status: "Success",
       token,
@@ -256,13 +239,11 @@ export const validateToken = async (req, res) => {
       // Check if user exists and email is verified
       return res.status(200).json({ valid: true });
     } else {
-      return res
-        .status(401)
-        .json({
-          valid: false,
-          message:
-            "Email not verified please verify your emai and login to access this page",
-        });
+      return res.status(401).json({
+        valid: false,
+        message:
+          "Email not verified please verify your emai and login to access this page",
+      });
     }
   } catch (error) {
     return res
