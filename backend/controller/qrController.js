@@ -59,9 +59,8 @@ export const GenerateQr = async (req, res) => {
     // Generate QR code as base64 data
     const qrCodeDataURL = await QRCode.toDataURL(filteredData, {
       width: 250,
-      pixelRatio: 7,
     });
-    let generate = await Generate.findOneAndUpdate({ email });
+    let generate = await Generate.findOne({ email });
     if (generate) {
       // Add new QR code to the existing array
       generate.GeneratedActivities.push({
@@ -94,7 +93,7 @@ export const ScanQr = async (req, res) => {
   try {
     const { qrCodeText, email } = req.body;
     // Save activity in the Scan model
-    let scan = await Scan.findOneAndUpdate({ email });
+    let scan = await Scan.findOne({ email });
     if (scan) {
       // User exists, merge the new activity into the existing array
       scan.activities.push({ qrCodeText });
