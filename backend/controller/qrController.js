@@ -92,6 +92,7 @@ export const GenerateQr = async (req, res) => {
 ///Controller for Scanqr code
 export const ScanQr = async (req, res) => {
   try {
+    const { qrCodeText, email } = req.body;
     // Save activity in the Scan model
     let scan = await Scan.findOneAndUpdate({ email });
     if (scan) {
